@@ -16,7 +16,7 @@ class FragmentResearch : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_fragment_top_stories, container, false)
+        return inflater.inflate(R.layout.fragment_fragment_research, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

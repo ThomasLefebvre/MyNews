@@ -20,6 +20,6 @@ class FragmentTopStories : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        tv_fragment_name.text="Hello fragment Top Stories"
+        tv_fragment_name.text="Top Stories"
     }
 }

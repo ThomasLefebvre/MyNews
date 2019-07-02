@@ -16,7 +16,7 @@ class FragmentMostPopular : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_fragment_top_stories, container, false)
+        return inflater.inflate(R.layout.fragment_fragment_most_popular, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
