@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">My News</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_nav_drawer">THE NEW YORK TIMES</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_bale">My News</string>
+    <string name="api_key">xjSFUB83aPA3lnorUzkwGdtWxnk9uIme</string>
+    <string name="message_search">Please select at least one category and specify a query term</string>
+    <string name="enable_notifications">Enable notifications (once per day)      </string>
 </resources>

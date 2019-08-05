@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentTopStories">
+    tools:context=".controller.FragmentMostPopular">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_fragment_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_most_popular"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
