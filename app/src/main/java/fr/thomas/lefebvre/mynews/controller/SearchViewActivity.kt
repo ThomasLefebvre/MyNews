@@ -49,13 +49,13 @@ class SearchViewActivity : AppCompatActivity() {
         startActivity(webViewActivityIntent)
     }
 
-    private fun apiService(){
+    private fun apiService(){//SET METHOD FOR API SERVICE
         val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(SearchService.url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         val serviceSearch=retrofit.create(SearchService::class.java)//INSTANCE OF SERVICE
-        var requestSearch:Call<MainResponseSearch>
+        val requestSearch:Call<MainResponseSearch>
         requestSearch = if(dateEnd==""&&dateBegin==""){
             serviceSearch.articleByCategorySearch(orderArticle,pageNumber,sectionValues,textSearch,getString(R.string.api_key))//INSTANCE OF REQUEST
         }else if(dateBegin==""&&dateEnd!=""){
@@ -100,7 +100,7 @@ class SearchViewActivity : AppCompatActivity() {
         })
     }
 
-    private fun initValuesSearch(){
+    private fun initValuesSearch(){//INIT THE VALUE OF  SEARCH
         textSearch= intent.extras.getString("textSearch","")//RECOVER TEXT RESEARCH
         dateBegin=intent.extras.getString("dateBegin","")//RECOVER DATE BEGIN
         dateEnd=intent.extras.getString("dateEnd","")//RECOVER DATE END
@@ -108,23 +108,23 @@ class SearchViewActivity : AppCompatActivity() {
         sectionValues="section_name:($valueUrl)"//BUILD SECTION NAME
     }
 
-    private fun alertDialog(){
+    private fun alertDialog(){//SET THE DIALOG BOX
         val alertDialog=AlertDialog.Builder(this@SearchViewActivity)
         alertDialog.setTitle("No Results")
         alertDialog.setMessage("No results for this search, return to search screen!")
         alertDialog.setNeutralButton("Return"){ _: DialogInterface?, _: Int ->
-            this.startActivitySearch()
+            super.onBackPressed()
         }
         alertDialog.show()
     }
 
-    private fun startActivitySearch(){
+    private fun startActivitySearch(){//START ACTIVITY SEARCH
         val searchActivityIntent = Intent(this@SearchViewActivity, SearchActivity::class.java)
         startActivity(searchActivityIntent)
 
     }
 
-    private fun setRecyclerView(allArticle:List<Docs>){
+    private fun setRecyclerView(allArticle:List<Docs>){//SET RECYCLER VIEW
         rv_search_view.apply {
             layoutManager= LinearLayoutManager(this@SearchViewActivity)
             adapter= DocsAdapter(allArticle) { itemClick: Docs ->articleClick(itemClick)}

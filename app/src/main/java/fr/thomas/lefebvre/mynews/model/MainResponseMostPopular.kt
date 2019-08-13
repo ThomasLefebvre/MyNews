@@ -26,6 +26,8 @@ data class ViewedArticle(
     var url:String,
     var views:Int
 
+
+
 )
 
 data class Media(

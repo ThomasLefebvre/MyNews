@@ -10,4 +10,9 @@
     <string name="api_key">xjSFUB83aPA3lnorUzkwGdtWxnk9uIme</string>
     <string name="message_search">Please select at least one category and specify a query term</string>
     <string name="enable_notifications">Enable notifications (once per day)      </string>
+    <string name="my_menu_notification">Notifications</string>
+    <string name="my_menu_help">Help</string>
+    <string name="my_menu_about">About</string>
+    <string name="my_menu_search">Search</string>
+
 </resources>

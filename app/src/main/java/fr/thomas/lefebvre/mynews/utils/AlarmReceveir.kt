@@ -61,7 +61,7 @@ class AlarmReceveir : BroadcastReceiver() {
             val notifBuilder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Your research...")
-                .setContentText("$numberResult articles correspondent à votre recherche")
+                .setContentText("$numberResult articles correspond to your search.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             //SET SHOW NOTIFICATION

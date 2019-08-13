@@ -65,7 +65,7 @@ class FragmentTopStories : Fragment() {
 
     fun articleClick(itemClick: Article){//START WEBVIEW  ACTIVTY ON CLICK
         val webViewActivityIntent= Intent(activity, WebViewActivity::class.java)
-        webViewActivityIntent.putExtra(Intent.EXTRA_TEXT,"${itemClick.url}")
+        webViewActivityIntent.putExtra(Intent.EXTRA_TEXT, itemClick.url)
         startActivity(webViewActivityIntent)
     }
 

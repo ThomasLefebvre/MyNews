@@ -9,13 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.mynews.model.Docs
-import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DocsAdapter (private val articleOnView:List<Docs>, private val listener:(Docs)-> Unit):RecyclerView.Adapter<DocsAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        val v:View= LayoutInflater.from(p0.context).inflate(R.layout.rv_item,p0,false)
+        val v:View= LayoutInflater.from(p0.context).inflate(fr.thomas.lefebvre.mynews.R.layout.rv_item,p0,false)
         return ViewHolder(v)
     }
 
@@ -28,21 +30,20 @@ class DocsAdapter (private val articleOnView:List<Docs>, private val listener:(D
 
     class ViewHolder(elementList: View):RecyclerView.ViewHolder(elementList){
 
+        var dateUtils:DateUtils= DateUtils()
+
         fun bind(docs:Docs, listener:(Docs)->Unit){
-            val tvSection: TextView =itemView.findViewById(R.id.tv_section)
-            val tvDate: TextView =itemView.findViewById(R.id.tv_date)
-            val tvAbstract: TextView =itemView.findViewById(R.id.tv_abstract)
-            val imageArticle:ImageView=itemView.findViewById(R.id.imageViewArticle)
+            val tvSection: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_section)
+            val tvDate: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_date)
+            val tvAbstract: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_abstract)
+            val imageArticle:ImageView=itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.imageViewArticle)
             tvSection.text=docs.section_name//SECTION TITLE
-            val shortDate=docs.pub_date//DATE
-            val year= shortDate.substring(2,4)
-            val month=shortDate.substring(5,7)
-            val  day= shortDate.substring(8,10)
-            tvDate.text = "$day/$month/$year"
+            tvDate.text = dateUtils.dateFormat(docs.pub_date)//SET DATE FORMAT
+
             tvAbstract.text=docs.abstract//ABSTRACT
             //SET IMAGE ARTICLE
             if(docs.multimedia.size==0) { //IF NO IMAGE
-                imageArticle.setImageResource(R.drawable.logo_nyt)
+                imageArticle.setImageResource(fr.thomas.lefebvre.mynews.R.drawable.logo_nyt)
             }
             else{ //IF IMAGE
                 val urlImage: String = urlImageStart+ docs.multimedia.get(1).url

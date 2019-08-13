@@ -181,11 +181,6 @@ class NotificationsActivity : AppCompatActivity() {
         imageView2.visibility=View.GONE
 
     }
-
-
-
-
-
 }
 
 

@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.mynews.model.Article
 import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.utils.DateUtils
 
 
 class ArticleAdapter (private val articleOnView:List<Article>, private val listener:(Article)-> Unit):RecyclerView.Adapter<ArticleAdapter.ViewHolder>(){
@@ -28,17 +29,16 @@ class ArticleAdapter (private val articleOnView:List<Article>, private val liste
 
     class ViewHolder(elementList: View):RecyclerView.ViewHolder(elementList){
 
+         var dateUtils:DateUtils=DateUtils()
+
         fun bind(article:Article, listener:(Article)->Unit){
             val tvSection: TextView =itemView.findViewById(R.id.tv_section)
             val tvDate: TextView =itemView.findViewById(R.id.tv_date)
             val tvAbstract: TextView =itemView.findViewById(R.id.tv_abstract)
             val imageArticle:ImageView=itemView.findViewById(R.id.imageViewArticle)
             tvSection.text=(article.section+" > "+article.subsection)//SECTION TITLE
-            val shortDate=article.published_date//DATE
-            val year= shortDate.substring(2,4)
-            val month=shortDate.substring(5,7)
-            val  day= shortDate.substring(8,10)
-            tvDate.text = "$day/$month/$year"
+
+            tvDate.text = dateUtils.dateFormat(article.published_date)
             tvAbstract.text=article.abstract//ABSTRACT
             //SET IMAGE ARTICLE
             if(article.multimedia.size==0) { //IF NO IMAGE

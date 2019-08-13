@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Notifications"
+        android:title="@string/my_menu_notification"
         android:id="@+id/menu_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
-        >/</item>
+        ></item>
 
     <item
-        android:title="Help"
+        android:title="@string/my_menu_help"
         android:id="@+id/menu_help"
         android:icon="@drawable/ic_help_black_24dp"
         >/</item>
 
     <item
-        android:title="About"
+        android:title="@string/my_menu_about"
         android:id="@+id/menu_about"
         android:icon="@drawable/ic_info_black_24dp"
       >/</item>
@@ -23,7 +23,7 @@
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search_white_24dp"
-        android:title="Search"
+        android:title="@string/my_menu_search"
         app:showAsAction="always"/>
 
 </menu>
