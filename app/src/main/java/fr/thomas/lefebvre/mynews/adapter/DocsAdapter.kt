@@ -30,16 +30,17 @@ class DocsAdapter (private val articleOnView:List<Docs>, private val listener:(D
 
     class ViewHolder(elementList: View):RecyclerView.ViewHolder(elementList){
 
-        var dateUtils:DateUtils= DateUtils()
+        private var dateUtils:DateUtils= DateUtils()
 
         fun bind(docs:Docs, listener:(Docs)->Unit){
+            //INIT GRAPHICS ELEMENTS
             val tvSection: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_section)
             val tvDate: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_date)
             val tvAbstract: TextView =itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.tv_abstract)
             val imageArticle:ImageView=itemView.findViewById(fr.thomas.lefebvre.mynews.R.id.imageViewArticle)
+
             tvSection.text=docs.section_name//SECTION TITLE
             tvDate.text = dateUtils.dateFormat(docs.pub_date)//SET DATE FORMAT
-
             tvAbstract.text=docs.abstract//ABSTRACT
             //SET IMAGE ARTICLE
             if(docs.multimedia.size==0) { //IF NO IMAGE

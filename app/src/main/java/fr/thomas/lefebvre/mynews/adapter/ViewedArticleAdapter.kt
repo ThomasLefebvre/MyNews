@@ -26,16 +26,18 @@ class ViewedArticleAdapter (private val articleOnView:List<ViewedArticle>, priva
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) = p0.bind(articleOnView[p1],listener)
 
     class ViewHolder(elementList: View): RecyclerView.ViewHolder(elementList){
-        var dateUtils=DateUtils()
+
+        private var dateUtils=DateUtils()
+
         fun bind(article: ViewedArticle, listener:(ViewedArticle)->Unit){
+            //INIT GRAPHICS ELEMENTS
             val tvSection: TextView =itemView.findViewById(R.id.tv_section)
             val tvDate: TextView =itemView.findViewById(R.id.tv_date)
             val tvAbstract: TextView =itemView.findViewById(R.id.tv_abstract)
             val imageArticle: ImageView =itemView.findViewById(R.id.imageViewArticle)
+
             tvSection.text=(article.section+" >")//SECTION TITLE
-
             tvDate.text = dateUtils.dateFormatMostPopular(article.published_date)//SET DATE FORMAT
-
             tvAbstract.text=article.abstract//SET ABSTRACT ARTICLE
             //SET IMAGE ARTICLE
             if(article.media.size==0) { //IF NO IMAGE

@@ -118,11 +118,7 @@ class SearchViewActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun startActivitySearch(){//START ACTIVITY SEARCH
-        val searchActivityIntent = Intent(this@SearchViewActivity, SearchActivity::class.java)
-        startActivity(searchActivityIntent)
 
-    }
 
     private fun setRecyclerView(allArticle:List<Docs>){//SET RECYCLER VIEW
         rv_search_view.apply {

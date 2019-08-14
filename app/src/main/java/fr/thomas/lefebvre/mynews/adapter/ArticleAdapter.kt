@@ -29,15 +29,16 @@ class ArticleAdapter (private val articleOnView:List<Article>, private val liste
 
     class ViewHolder(elementList: View):RecyclerView.ViewHolder(elementList){
 
-         var dateUtils:DateUtils=DateUtils()
+         private var dateUtils:DateUtils=DateUtils()
 
         fun bind(article:Article, listener:(Article)->Unit){
+            //INIT GRAPHICS ELEMENTS
             val tvSection: TextView =itemView.findViewById(R.id.tv_section)
             val tvDate: TextView =itemView.findViewById(R.id.tv_date)
             val tvAbstract: TextView =itemView.findViewById(R.id.tv_abstract)
             val imageArticle:ImageView=itemView.findViewById(R.id.imageViewArticle)
-            tvSection.text=(article.section+" > "+article.subsection)//SECTION TITLE
 
+            tvSection.text=(article.section+" > "+article.subsection)//SECTION TITLE
             tvDate.text = dateUtils.dateFormat(article.published_date)
             tvAbstract.text=article.abstract//ABSTRACT
             //SET IMAGE ARTICLE

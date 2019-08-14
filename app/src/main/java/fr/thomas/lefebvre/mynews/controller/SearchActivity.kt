@@ -2,10 +2,8 @@ package fr.thomas.lefebvre.mynews.controller
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.view.View
 import android.widget.*
 import fr.thomas.lefebvre.mynews.R
@@ -18,76 +16,28 @@ class SearchActivity : AppCompatActivity() {
     val c=Calendar.getInstance()
     var dateBegin:String=""
     var dateEnd:String=""
-    var valueSports: String = ""
-    var valueScience: String = ""
-    var valueArts: String = ""
-    var valueAutomobiles: String = ""
-    var valueBooks: String = ""
-    var valueFood: String = ""
-    var valueHealth: String = ""
-    var valueMovies: String = ""
     var valueUrl:String=""
+    val listValeuCheckBox:List<String> =listOf("\"Arts\"","\"Automobiles\"","\"Books\"","\"Food\"","\"Health\"","\"Movies\"","\"Science\"","\"Sports\"")
+    var listValeurObtenuCheckBox: MutableList<String> = mutableListOf("","","","","","","","")
 
 
 
 
 
-    @RequiresApi(Build.VERSION_CODES.N)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         this.setBeginDate()
         this.setEndDate()
         this.setToolbar()
-        this.setCheckBox()
+        this.setValueCheckBox(listValeuCheckBox,listValeurObtenuCheckBox)
         this.startSearchViewActivityWhithValues()
         this.goneSwitch()
 
-
-
     }
 
-    fun setCheckBox(){
-        cb_arts.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueArts = "\"Arts\""
-            else valueArts = ""
-        })
 
-        cb_auto.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueAutomobiles = "\"Automobiles\""
-            else valueAutomobiles = ""
-        })
-
-        cb_books.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueBooks = "\"Books\""
-            else valueBooks = ""
-        })
-
-        cb_food.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueFood = "\"Food\""
-            else valueFood = ""
-        })
-
-        cb_health.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueHealth = "\"Health\""
-            else valueHealth = ""
-        })
-
-        cb_movie.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueMovies = "\"Movies\""
-            else valueMovies = ""
-        })
-
-        cb_sciences.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueScience = "\"Science\""
-            else valueScience = ""
-        })
-
-        cb_sports.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
-            if (isChecked) valueSports = "\"Sports\""
-            else valueSports = ""
-        })
-    }
     private fun setBeginDate(){
         bt_begin.setOnClickListener(View.OnClickListener {
             val date=object:DatePickerDialog.OnDateSetListener{
@@ -120,7 +70,10 @@ class SearchActivity : AppCompatActivity() {
 
     private fun startSearchViewActivityWhithValues(){
         btn_search.setOnClickListener(View.OnClickListener {
-           valueUrl= valueArts+valueAutomobiles+valueBooks+valueFood+valueHealth+valueMovies+valueScience+valueSports
+                valueUrl= listValeurObtenuCheckBox[0]+listValeurObtenuCheckBox[1]+listValeurObtenuCheckBox[2]+listValeurObtenuCheckBox[3]+
+                        listValeurObtenuCheckBox[4]+listValeurObtenuCheckBox[5]+listValeurObtenuCheckBox[6]+listValeurObtenuCheckBox[7]
+
+
            if((cb_arts.isChecked||cb_auto.isChecked||cb_books.isChecked||cb_food.isChecked||cb_health.isChecked||cb_movie.isChecked||cb_sciences.isChecked||cb_sports.isChecked)&&editText.length()!=0){
                val searchViewActivity = Intent(this, SearchViewActivity::class.java)
                searchViewActivity.putExtra("textSearch", editText.text.toString())
@@ -134,7 +87,7 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
-    fun setToolbar(){
+    fun setToolbar(){//SET TOOLBAR
         toolbar.setTitle("Search")
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener(View.OnClickListener {
@@ -142,8 +95,21 @@ class SearchActivity : AppCompatActivity() {
         })
 
     }
-    fun goneSwitch(){
+    fun goneSwitch(){//SET VISIBILTY OF VIEW
         switch_notifs.visibility=View.GONE
         tv_switch.visibility=View.GONE
     }
+
+    fun setValueCheckBox(listValeur:List<String>,listValeurObtenu:MutableList<String>){//SET VALUE IN FUNCTION AT CHECKBOX
+
+        val listCheckBox=listOf(cb_arts,cb_auto,cb_books,cb_food,cb_health,cb_movie,cb_sciences,cb_sports)
+        for (i in listCheckBox.indices){
+            listCheckBox.get(i).setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
+                if (isChecked) listValeurObtenu[i] = listValeur[i]
+              else listValeurObtenu[i]=""
+            })
+        }
+
+    }
+
 }
