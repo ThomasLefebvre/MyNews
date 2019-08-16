@@ -1,14 +1,14 @@
-sudo: required
 language: android
-jdk: oraclejdk8
 android:
-components:
-  - platform-tools
-  - tools
-  - build-tools-28.0.2
-  - android-28
-  - extra-android-m2repository
-before_script:
-  - chmod +x gradlew
+  components:
+    - platform-tools
+    - build-tools-23.0.1
+    - android-23
+    - extra-android-m2repository
 script:
-  - ./gradlew build --stacktrace
+  - ./gradlew build
+before_install:
+  - chmod +x gradlew
+branches:
+  only:
+    - master
