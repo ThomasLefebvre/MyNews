@@ -13,6 +13,7 @@ import fr.thomas.lefebvre.mynews.controller.MainActivity
 import fr.thomas.lefebvre.mynews.controller.NotificationsActivity
 import fr.thomas.lefebvre.mynews.controller.SearchActivity
 import fr.thomas.lefebvre.mynews.controller.WebViewActivity
+import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.junit.After
@@ -118,7 +119,7 @@ class MainActivityTest {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_most_popular))
 
         //Assert if the position tab is the position most popular tab
-        assert(mActivity.tabLayout.selectedTabPosition == 1)
+        assertEquals(mActivity.tabLayout.selectedTabPosition , 1)
 
 
     }
@@ -130,7 +131,7 @@ class MainActivityTest {
         onView(withText("SPORT")).perform(click())
         Thread.sleep(2000L)
         //Assert if the position tab is the position sport tab
-        assert(mActivity.tabLayout.selectedTabPosition == 2)
+        assertEquals(mActivity.tabLayout.selectedTabPosition , 2)
 
 
     }

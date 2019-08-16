@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SearchViewActivity : AppCompatActivity() {
+    //INIT VARIABLES
     var pageNumber:Int=0
     lateinit var textSearch:String
     lateinit var sectionValues:String
@@ -56,15 +57,16 @@ class SearchViewActivity : AppCompatActivity() {
         .build()
         val serviceSearch=retrofit.create(SearchService::class.java)//INSTANCE OF SERVICE
         val requestSearch:Call<MainResponseSearch>
-        requestSearch = if(dateEnd==""&&dateBegin==""){
-            serviceSearch.articleByCategorySearch(orderArticle,pageNumber,sectionValues,textSearch,getString(R.string.api_key))//INSTANCE OF REQUEST
-        }else if(dateBegin==""&&dateEnd!=""){
+        //INSTANCE OF REQUEST
+        requestSearch = if(dateEnd==""&&dateBegin==""){//if no date
+            serviceSearch.articleByCategorySearch(orderArticle,pageNumber,sectionValues,textSearch,getString(R.string.api_key))
+        }else if(dateBegin==""&&dateEnd!=""){//if date end
             serviceSearch.articleByCategorySearchDateEnd(orderArticle,dateEnd,pageNumber,sectionValues,textSearch,getString(R.string.api_key))
         }
-        else if(dateBegin!=""&&dateEnd==""){
+        else if(dateBegin!=""&&dateEnd==""){//if date begin
             serviceSearch.articleByCategorySearchDateBegin(orderArticle,dateBegin,pageNumber,sectionValues,textSearch,getString(R.string.api_key))
         }
-        else{
+        else{//if date end and date begin
             serviceSearch.articleByCategorySearchAndDates(orderArticle,dateBegin,dateEnd,pageNumber,sectionValues,textSearch,getString(R.string.api_key))//INSTANCE OF REQUEST
         }
         requestSearch.enqueue(object: Callback<MainResponseSearch> {
@@ -104,11 +106,11 @@ class SearchViewActivity : AppCompatActivity() {
         textSearch= intent.extras.getString("textSearch","")//RECOVER TEXT RESEARCH
         dateBegin=intent.extras.getString("dateBegin","")//RECOVER DATE BEGIN
         dateEnd=intent.extras.getString("dateEnd","")//RECOVER DATE END
-        valueUrl=intent.extras.getString("valueUrl","")
+        valueUrl=intent.extras.getString("valueUrl","")//RECOVER VALUE CATEGORY
         sectionValues="section_name:($valueUrl)"//BUILD SECTION NAME
     }
 
-    private fun alertDialog(){//SET THE DIALOG BOX
+    private fun alertDialog(){//SET THE DIALOG BOX IF NO RESULTS
         val alertDialog=AlertDialog.Builder(this@SearchViewActivity)
         alertDialog.setTitle("No Results")
         alertDialog.setMessage("No results for this search, return to search screen!")

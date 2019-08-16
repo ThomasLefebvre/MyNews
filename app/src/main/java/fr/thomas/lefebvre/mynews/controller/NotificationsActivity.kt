@@ -13,6 +13,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.text.Editable
 import android.widget.CompoundButton
+import android.widget.Switch
 import kotlinx.android.synthetic.main.search_layout.*
 
 
@@ -77,8 +78,9 @@ class NotificationsActivity : AppCompatActivity() {
         Log.i("ALARM","Cancel alarm")
     }
 
-    fun startOrCancelAlarm(){//TEST FOR INIT OR CANCEL ALARM
-        if (switch_notifs.isChecked){
+    fun startOrCancelAlarm(switch:Switch){//TEST FOR INIT OR CANCEL ALARM
+
+        if (switch.isChecked){
             Log.i("NOTIFS","Switch is checked, start alarm ")
             setAlarm()
         }
@@ -92,7 +94,7 @@ class NotificationsActivity : AppCompatActivity() {
 
     fun switchListener(){// SWITCH LISTENER METHOD
         switch_notifs.setOnClickListener(View.OnClickListener {
-            startOrCancelAlarm()
+            startOrCancelAlarm(switch_notifs)
             Log.i("NOTIFS","Switch Listener for start or cancel alarm")
             saveData()
         })

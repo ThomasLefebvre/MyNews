@@ -1,7 +1,7 @@
 package fr.thomas.lefebvre.mynews
 
 import fr.thomas.lefebvre.mynews.utils.DateUtils
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class DateUtilsTest {
