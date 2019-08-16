@@ -109,20 +109,20 @@ class MainActivityTest {
         nextActivity.finish()
     }
 
-    @Test
-    fun openMenuDrawer(){
-        Thread.sleep(500L)
-        //Open the navigation drawer
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Thread.sleep(500L)
-        //Click on the sport menu
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_most_popular))
-
-        //Assert if the position tab is the position most popular tab
-        assertEquals(mActivity.tabLayout.selectedTabPosition , 1)
-
-
-    }
+//    @Test
+//    fun openMenuDrawer(){
+//        Thread.sleep(500L)
+//        //Open the navigation drawer
+//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+//        Thread.sleep(500L)
+//        //Click on the sport menu
+//        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_most_popular))
+//
+//        //Assert if the position tab is the position most popular tab
+//        assertEquals(mActivity.tabLayout.selectedTabPosition , 1)
+//
+//
+//    }
 
     @Test
     fun openTabSport(){
