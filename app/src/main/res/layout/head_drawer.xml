@@ -8,11 +8,5 @@
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="94dp"
-        android:layout_height="96dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/nyt_logo" />
+
 </LinearLayout>

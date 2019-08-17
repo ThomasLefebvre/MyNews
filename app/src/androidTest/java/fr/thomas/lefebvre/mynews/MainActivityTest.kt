@@ -13,10 +13,10 @@ import fr.thomas.lefebvre.mynews.controller.MainActivity
 import fr.thomas.lefebvre.mynews.controller.NotificationsActivity
 import fr.thomas.lefebvre.mynews.controller.SearchActivity
 import fr.thomas.lefebvre.mynews.controller.WebViewActivity
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
