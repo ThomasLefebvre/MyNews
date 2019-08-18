@@ -15,6 +15,7 @@ import fr.thomas.lefebvre.mynews.model.Article
 import fr.thomas.lefebvre.mynews.model.MainResponseTopStories
 import fr.thomas.lefebvre.mynews.R
 import kotlinx.android.synthetic.main.fragment_fragment_sport.view.*
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +35,7 @@ class FragmentSport : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(TopStoriesService.url)
