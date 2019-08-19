@@ -17,11 +17,9 @@ android:
     - extra-android-m2repository
 
 script:
-  - ./gradlew build connectedCheck
-
-
-before  script:
   - chmod +x gradlew
+
+
 
 licenses:
   - '.+'
