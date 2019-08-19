@@ -20,7 +20,7 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-23"
 script:
-  - ./gradlew build connectedCheck
+  - ./gradlew assemble
 
 licenses:
   - '.+'
