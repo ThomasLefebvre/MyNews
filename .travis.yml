@@ -8,6 +8,7 @@ android:
   components:
     # Update Android SDK Tools
     - tools
+    - tools
 
     - build-tools-23.0.1
     - android-23
@@ -16,10 +17,10 @@ android:
     - extra-android-support
     - extra-android-m2repository
 
+before_install:
+  - yes | sdkmanager "platforms;android-23"
 script:
-  - chmod +x gradlew
-
-
+  - ./gradlew build connectedCheck
 
 licenses:
   - '.+'
