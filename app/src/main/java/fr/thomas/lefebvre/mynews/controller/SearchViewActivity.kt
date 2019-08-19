@@ -9,10 +9,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import fr.thomas.lefebvre.mynews.adapter.DocsAdapter
-import fr.thomas.lefebvre.mynews.service.SearchService
+import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
 import fr.thomas.lefebvre.mynews.model.Docs
 import fr.thomas.lefebvre.mynews.model.MainResponseSearch
 import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.service.ApiService
 import kotlinx.android.synthetic.main.activity_search_view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,10 +53,10 @@ class SearchViewActivity : AppCompatActivity() {
 
     private fun apiService(){//SET METHOD FOR API SERVICE
         val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(SearchService.url)
+        .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        val serviceSearch=retrofit.create(SearchService::class.java)//INSTANCE OF SERVICE
+        val serviceSearch=retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
         val requestSearch:Call<MainResponseSearch>
         //INSTANCE OF REQUEST
         requestSearch = if(dateEnd==""&&dateBegin==""){//if no date
@@ -94,7 +95,7 @@ class SearchViewActivity : AppCompatActivity() {
 
     private fun setButtonPrevious(){
         btn_next.setOnClickListener(View.OnClickListener {
-            var maxPage:Int=((mainResponseSearch.response.meta.hits)/10)-1
+            val maxPage:Int=((mainResponseSearch.response.meta.hits)/10)-1
             if (pageNumber<maxPage){
                 pageNumber += 1
                 this.apiService()

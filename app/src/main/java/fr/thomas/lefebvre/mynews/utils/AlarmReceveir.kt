@@ -1,5 +1,6 @@
 package fr.thomas.lefebvre.mynews.utils
 
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
@@ -9,10 +10,9 @@ import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
-import fr.thomas.lefebvre.mynews.R
 import java.util.*
-import fr.thomas.lefebvre.mynews.service.SearchService
 import fr.thomas.lefebvre.mynews.model.MainResponseSearch
+import fr.thomas.lefebvre.mynews.service.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +22,10 @@ import java.text.SimpleDateFormat
 
 
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
+
+
+
 class AlarmReceveir : BroadcastReceiver() {
     var CHANNEL_ID = "fr.thomas.lefebvre.mynews"
     var NOTIFICATION_ID = 0
@@ -30,10 +33,12 @@ class AlarmReceveir : BroadcastReceiver() {
     lateinit var listCheck:List<Boolean>
     val listSection:List<String> = listOf("\"Arts\"","\"Automobiles\"","\"Books\"","\"Food\"","\"Health\"","\"Movies\"","\"Science\"","\"Sports\"")
 
-    override fun onReceive(context: Context, intent: Intent?) {
+
+    override fun onReceive(context: Context, intent: Intent) {
+
+
 
         apiService(context)
-
 
     }
 
@@ -59,7 +64,7 @@ class AlarmReceveir : BroadcastReceiver() {
             //SET NOTIFICATION
             val notificationManager = NotificationManagerCompat.from(context)
             val notifBuilder = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setSmallIcon(fr.thomas.lefebvre.mynews.R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Your research...")
                 .setContentText("$numberResult articles correspond to your search.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -72,14 +77,14 @@ class AlarmReceveir : BroadcastReceiver() {
     }
 
     private fun apiService(context: Context) {
-        var sectionsWithTitle: String="section_name:("+loadDataCheckBox(context)+")"
-        var textSearchApi=loadDataTextSearch(context)
+        val sectionsWithTitle: String="section_name:("+loadDataCheckBox(context)+")"
+        val textSearchApi=loadDataTextSearch(context)
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(SearchService.url)
+            .baseUrl(ApiService.url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val serviceSearch = retrofit.create(SearchService::class.java)//INSTANCE OF SERVICE
-        val requestSearch = serviceSearch.articleNotification(setDateYesterday(),setDateYesterday(),sectionsWithTitle,textSearchApi, context.getString(R.string.api_key))
+        val serviceSearch = retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
+        val requestSearch = serviceSearch.articleNotification(setDateYesterday(),setDateYesterday(),sectionsWithTitle,textSearchApi, context.getString(fr.thomas.lefebvre.mynews.R.string.api_key))
         Log.i("ALARM","request with text search: "+textSearchApi)
         requestSearch.enqueue(object: Callback<MainResponseSearch> {
             override fun onFailure(call: Call<MainResponseSearch>, t: Throwable) {
@@ -97,9 +102,9 @@ class AlarmReceveir : BroadcastReceiver() {
         )
     }
     private fun setDateYesterday(): String {//SET DATE FOR REQUEST
-        var calendar=GregorianCalendar()
+        val calendar=GregorianCalendar()
         calendar.add(Calendar.DATE,-1)
-        var date:String= SimpleDateFormat("yyyMMdd",Locale.US).format(calendar.time)
+        val date:String= SimpleDateFormat("yyyMMdd",Locale.US).format(calendar.time)
         Log.i("ALARM RECEIVER","Set date")
         return date
 
@@ -123,7 +128,7 @@ class AlarmReceveir : BroadcastReceiver() {
         return sectionsString
     }
 
-    private fun loadDataTextSearch(context: Context):String{
+    private fun loadDataTextSearch(context: Context):String?{
         val result=context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         return result.getString("textSearch","")
     }

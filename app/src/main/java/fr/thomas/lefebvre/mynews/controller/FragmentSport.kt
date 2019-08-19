@@ -10,12 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fr.thomas.lefebvre.mynews.adapter.ArticleAdapter
-import fr.thomas.lefebvre.mynews.service.TopStoriesService
 import fr.thomas.lefebvre.mynews.model.Article
 import fr.thomas.lefebvre.mynews.model.MainResponseTopStories
 import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.service.ApiService
+import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
 import kotlinx.android.synthetic.main.fragment_fragment_sport.view.*
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,10 +38,10 @@ class FragmentSport : Fragment() {
 
 
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(TopStoriesService.url)
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val serviceTopStories=retrofit.create(TopStoriesService::class.java)//INSTANCE OF SERVICE
+        val serviceTopStories=retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
         val requestTopStories=serviceTopStories.articleByCategory("sports",getString(R.string.api_key))//INSTANCE OF REQUEST
         requestTopStories.enqueue(object: Callback<MainResponseTopStories> {
             override fun onFailure(call: Call<MainResponseTopStories>, t: Throwable) {

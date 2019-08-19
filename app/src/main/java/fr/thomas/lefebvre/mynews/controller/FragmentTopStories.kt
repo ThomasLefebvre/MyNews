@@ -10,12 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fr.thomas.lefebvre.mynews.adapter.ArticleAdapter
-import fr.thomas.lefebvre.mynews.service.TopStoriesService
-import fr.thomas.lefebvre.mynews.service.TopStoriesService.Companion.url
+import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
 import fr.thomas.lefebvre.mynews.model.Article
 import fr.thomas.lefebvre.mynews.model.MainResponseTopStories
 import fr.thomas.lefebvre.mynews.R
-import kotlinx.android.synthetic.main.fragment_fragment_most_popular.*
+import fr.thomas.lefebvre.mynews.service.ApiService
 import kotlinx.android.synthetic.main.fragment_fragment_top_stories.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -43,7 +42,7 @@ class FragmentTopStories : Fragment() {
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val serviceTopStories=retrofit.create(TopStoriesService::class.java)//INSTANCE OF SERVICE
+        val serviceTopStories=retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
         val requestTopStories=serviceTopStories.articleByCategory("home",getString(R.string.api_key))//INSTANCE OF REQUEST
         requestTopStories.enqueue(object: Callback<MainResponseTopStories> {
             override fun onFailure(call: Call<MainResponseTopStories>, t: Throwable) {

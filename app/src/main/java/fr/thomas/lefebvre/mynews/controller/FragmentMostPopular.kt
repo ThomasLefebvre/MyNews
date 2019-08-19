@@ -9,12 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import fr.thomas.lefebvre.mynews.service.MostPopularService
-import fr.thomas.lefebvre.mynews.service.MostPopularService.Companion.url
+import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
 import fr.thomas.lefebvre.mynews.adapter.ViewedArticleAdapter
 import fr.thomas.lefebvre.mynews.model.MainResponseMostPopular
 import fr.thomas.lefebvre.mynews.model.ViewedArticle
 import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.service.ApiService
 import kotlinx.android.synthetic.main.fragment_fragment_most_popular.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,7 +40,7 @@ class FragmentMostPopular : Fragment() {
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val serviceMostPopular=retrofit.create(MostPopularService::class.java)//INSTANCE OF SERVICE
+        val serviceMostPopular=retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
         val requestMostPopular=serviceMostPopular.articleByPeriod(1,getString(R.string.api_key))//INSTANCE OF REQUEST
         requestMostPopular.enqueue(object: Callback<MainResponseMostPopular> {
             override fun onFailure(call: Call<MainResponseMostPopular>, t: Throwable) {
