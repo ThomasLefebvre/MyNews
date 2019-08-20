@@ -38,8 +38,8 @@ class SearchActivityTest {
         val activityMonitor = InstrumentationRegistry.getInstrumentation()
             .addMonitor(SearchViewActivity::class.java.name, null, false)
 
-        // click and write "camembert" on the query search
-        Espresso.onView(ViewMatchers.withId(R.id.editText)).perform(ViewActions.click(),typeText("Camembert"))
+        // click, write "camembert" and close keyboard
+        Espresso.onView(ViewMatchers.withId(R.id.editText)).perform(ViewActions.click(),typeText("Camembert"),ViewActions.closeSoftKeyboard())
 
         //check the food checkbox
         Espresso.onView(ViewMatchers.withId(R.id.cb_food)).perform(ViewActions.click())
