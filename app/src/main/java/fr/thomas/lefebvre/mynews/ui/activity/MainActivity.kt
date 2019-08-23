@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import fr.thomas.lefebvre.mynews.R
+import fr.thomas.lefebvre.mynews.ui.fragment.FragmentMostPopular
+import fr.thomas.lefebvre.mynews.ui.fragment.FragmentSport
+import fr.thomas.lefebvre.mynews.ui.fragment.FragmentTopStories
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.util.*
@@ -100,12 +103,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(notificationsActivityIntent)
             }
             R.id.menu_help ->{
-                val  webViewIntent=Intent(this,WebViewActivity::class.java)
+                val  webViewIntent=Intent(this, WebViewActivity::class.java)
                 webViewIntent.putExtra(Intent.EXTRA_TEXT,"https://help.nytimes.com/hc/en-us")
                 startActivity(webViewIntent)
             }
             R.id.menu_about ->{
-                val  webViewIntent=Intent(this,WebViewActivity::class.java)
+                val  webViewIntent=Intent(this, WebViewActivity::class.java)
                 webViewIntent.putExtra(Intent.EXTRA_TEXT,"https://www.nytco.com/company/")
                 startActivity(webViewIntent)
             }

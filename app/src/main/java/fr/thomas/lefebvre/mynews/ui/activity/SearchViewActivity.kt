@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.activity
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,12 +8,13 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import fr.thomas.lefebvre.mynews.adapter.DocsAdapter
+import fr.thomas.lefebvre.mynews.ui.adapter.DocsAdapter
 import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
 import fr.thomas.lefebvre.mynews.model.Docs
 import fr.thomas.lefebvre.mynews.model.MainResponseSearch
 import fr.thomas.lefebvre.mynews.R
 import fr.thomas.lefebvre.mynews.service.ApiService
+import fr.thomas.lefebvre.mynews.utils.CalculUtils
 import kotlinx.android.synthetic.main.activity_search_view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SearchViewActivity : AppCompatActivity() {
     //INIT VARIABLES
+    var calculUtils=CalculUtils()
     var pageNumber:Int=0
     lateinit var textSearch:String
     lateinit var sectionValues:String
@@ -87,7 +89,7 @@ class SearchViewActivity : AppCompatActivity() {
 
     private fun setButtonNext(){
         btn_previous.setOnClickListener(View.OnClickListener {//BUTTON PREVIOUS AND NEXT LIST ARTICLE
-            if (pageNumber>0){
+            if (calculUtils.buttonNextIsPossible(pageNumber)){
                 pageNumber -= 1
                 this.apiService()}
         })
@@ -96,7 +98,7 @@ class SearchViewActivity : AppCompatActivity() {
     private fun setButtonPrevious(){
         btn_next.setOnClickListener(View.OnClickListener {
             val maxPage:Int=((mainResponseSearch.response.meta.hits)/10)-1
-            if (pageNumber<maxPage){
+            if (calculUtils.buttonPreviousIsPossible(pageNumber,maxPage)){
                 pageNumber += 1
                 this.apiService()
             }
@@ -126,7 +128,8 @@ class SearchViewActivity : AppCompatActivity() {
     private fun setRecyclerView(allArticle:List<Docs>){//SET RECYCLER VIEW
         rv_search_view.apply {
             layoutManager= LinearLayoutManager(this@SearchViewActivity)
-            adapter= DocsAdapter(allArticle) { itemClick: Docs ->articleClick(itemClick)}
+            adapter=
+                DocsAdapter(allArticle) { itemClick: Docs -> articleClick(itemClick) }
         }
     }
 

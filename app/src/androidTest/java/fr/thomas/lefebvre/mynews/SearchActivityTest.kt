@@ -6,8 +6,8 @@ import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
-import fr.thomas.lefebvre.mynews.controller.SearchActivity
-import fr.thomas.lefebvre.mynews.controller.SearchViewActivity
+import fr.thomas.lefebvre.mynews.ui.activity.SearchActivity
+import fr.thomas.lefebvre.mynews.ui.activity.SearchViewActivity
 import org.junit.*
 
 class SearchActivityTest {

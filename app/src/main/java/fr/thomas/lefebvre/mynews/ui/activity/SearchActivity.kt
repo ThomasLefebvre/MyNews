@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.activity
 
 import android.app.DatePickerDialog
 import android.content.Intent

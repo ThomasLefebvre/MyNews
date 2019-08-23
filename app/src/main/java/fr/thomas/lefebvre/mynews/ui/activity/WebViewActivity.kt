@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity

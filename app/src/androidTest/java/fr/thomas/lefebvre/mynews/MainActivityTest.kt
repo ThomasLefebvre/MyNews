@@ -9,10 +9,10 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.v7.widget.RecyclerView
-import fr.thomas.lefebvre.mynews.controller.MainActivity
-import fr.thomas.lefebvre.mynews.controller.NotificationsActivity
-import fr.thomas.lefebvre.mynews.controller.SearchActivity
-import fr.thomas.lefebvre.mynews.controller.WebViewActivity
+import fr.thomas.lefebvre.mynews.ui.activity.MainActivity
+import fr.thomas.lefebvre.mynews.ui.activity.NotificationsActivity
+import fr.thomas.lefebvre.mynews.ui.activity.SearchActivity
+import fr.thomas.lefebvre.mynews.ui.activity.WebViewActivity
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.junit.After
 import org.junit.Assert.assertEquals

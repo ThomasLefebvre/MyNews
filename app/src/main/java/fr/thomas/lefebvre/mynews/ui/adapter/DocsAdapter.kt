@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.adapter
+package fr.thomas.lefebvre.mynews.ui.adapter
 
 
 import android.support.v7.widget.RecyclerView
@@ -10,8 +10,6 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.mynews.model.Docs
 import fr.thomas.lefebvre.mynews.utils.DateUtils
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class DocsAdapter (private val articleOnView:List<Docs>, private val listener:(Docs)-> Unit):RecyclerView.Adapter<DocsAdapter.ViewHolder>(){
@@ -47,7 +45,7 @@ class DocsAdapter (private val articleOnView:List<Docs>, private val listener:(D
                 imageArticle.setImageResource(fr.thomas.lefebvre.mynews.R.drawable.logo_nyt)
             }
             else{ //IF IMAGE
-                val urlImage: String = urlImageStart+ docs.multimedia.get(1).url
+                val urlImage: String = urlImageStart + docs.multimedia.get(1).url
                 Picasso.get().load(urlImage).into(imageArticle)
             }
             itemView.setOnClickListener {//CLICK LISTENER

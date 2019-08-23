@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.search_layout.*
 
 class NotificationsActivity : AppCompatActivity() {
     // INIT VARIABLES
-    var section:String="\"sports\""
+
     var SHARED_PREFS:String="sharedPrefs"
     var TEXT_SEARCH:String="textSearch"
     var SWITCH1:String="switch1"
@@ -63,7 +63,7 @@ class NotificationsActivity : AppCompatActivity() {
 
 
 
-        manager.setRepeating(ELAPSED_REALTIME_WAKEUP, INTERVAL_FIFTEEN_MINUTES/2, +INTERVAL_FIFTEEN_MINUTES/2,pi)
+        manager.setRepeating(ELAPSED_REALTIME_WAKEUP, INTERVAL_FIFTEEN_MINUTES/8, +INTERVAL_FIFTEEN_MINUTES/8,pi)
         Log.i("ALARM","start alarm")
 
     }

@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.adapter
+package fr.thomas.lefebvre.mynews.ui.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

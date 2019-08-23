@@ -1,4 +1,4 @@
-package fr.thomas.lefebvre.mynews.controller
+package fr.thomas.lefebvre.mynews.ui.fragment
 
 
 import android.content.Intent
@@ -9,41 +9,41 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import fr.thomas.lefebvre.mynews.adapter.ArticleAdapter
-import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
+import fr.thomas.lefebvre.mynews.ui.adapter.ArticleAdapter
 import fr.thomas.lefebvre.mynews.model.Article
 import fr.thomas.lefebvre.mynews.model.MainResponseTopStories
 import fr.thomas.lefebvre.mynews.R
 import fr.thomas.lefebvre.mynews.service.ApiService
-import kotlinx.android.synthetic.main.fragment_fragment_top_stories.*
-import retrofit2.*
+import fr.thomas.lefebvre.mynews.service.ApiService.Companion.url
+import fr.thomas.lefebvre.mynews.ui.activity.WebViewActivity
+import kotlinx.android.synthetic.main.fragment_fragment_sport.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class FragmentTopStories : Fragment() {
-
-
-
-
-
+class FragmentSport : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_fragment_top_stories, container, false)
+        return inflater.inflate(R.layout.fragment_fragment_sport, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val retrofit:Retrofit=Retrofit.Builder()
+
+        val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val serviceTopStories=retrofit.create(ApiService::class.java)//INSTANCE OF SERVICE
-        val requestTopStories=serviceTopStories.articleByCategory("home",getString(R.string.api_key))//INSTANCE OF REQUEST
+        val requestTopStories=serviceTopStories.articleByCategory("sports",getString(R.string.api_key))//INSTANCE OF REQUEST
         requestTopStories.enqueue(object: Callback<MainResponseTopStories> {
             override fun onFailure(call: Call<MainResponseTopStories>, t: Throwable) {
                 Log.e("RETRO","$t")
@@ -52,9 +52,11 @@ class FragmentTopStories : Fragment() {
             override fun onResponse(call: Call<MainResponseTopStories>, response: Response<MainResponseTopStories>) {
                 val mainResponse=response.body()
                 val allArticle=mainResponse!!.results
-                rv_top_stories.apply {
-                    layoutManager=LinearLayoutManager(activity)
-                    adapter=ArticleAdapter(allArticle) { itemClick:Article->articleClick(itemClick)}
+                view.rv_sport.apply {
+                    layoutManager= LinearLayoutManager(activity)
+                    adapter= ArticleAdapter(allArticle) { itemClick: Article ->
+                        articleClick(itemClick)
+                    }
                 }
             }
         })
