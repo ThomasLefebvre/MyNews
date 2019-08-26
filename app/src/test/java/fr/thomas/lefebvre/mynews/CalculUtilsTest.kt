@@ -1,7 +1,6 @@
 package fr.thomas.lefebvre.mynews
 
 import fr.thomas.lefebvre.mynews.utils.CalculUtils
-import fr.thomas.lefebvre.mynews.utils.DateUtils
 import org.junit.Assert
 import org.junit.Test
 

@@ -48,7 +48,7 @@ class NotificationsActivity : AppCompatActivity() {
     }
 
     fun setToolbar(){//INIT TOOLBAR METHOD
-        toolbar.setTitle("Notifications")
+        toolbar.title = "Notifications"
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener(View.OnClickListener {
             super.onBackPressed()
@@ -58,8 +58,8 @@ class NotificationsActivity : AppCompatActivity() {
     fun setAlarm(){//INIT ALARM METHOD
 
         val manager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        var notifIntent:Intent=Intent(this,AlarmReceveir::class.java)
-        var pi:PendingIntent= PendingIntent.getBroadcast(this,0,notifIntent,0)
+        val notifIntent:Intent=Intent(this,AlarmReceveir::class.java)
+        val pi:PendingIntent= PendingIntent.getBroadcast(this,0,notifIntent,0)
 
 
 
@@ -71,8 +71,8 @@ class NotificationsActivity : AppCompatActivity() {
     fun cancelAlarm(){//CANCEL ALARM METHOD
 
         val manager=this.getSystemService(Context.ALARM_SERVICE)as AlarmManager
-        var notifIntent:Intent=Intent(this,AlarmReceveir::class.java)
-        var pi:PendingIntent= PendingIntent.getBroadcast(this,0,notifIntent,0)
+        val notifIntent:Intent=Intent(this,AlarmReceveir::class.java)
+        val pi:PendingIntent= PendingIntent.getBroadcast(this,0,notifIntent,0)
 
         manager.cancel(pi)
         Log.i("ALARM","Cancel alarm")

@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_about ->{
                 val  webViewIntent=Intent(this, WebViewActivity::class.java)
-                webViewIntent.putExtra(Intent.EXTRA_TEXT,"https://www.nytco.com/company/")
+                webViewIntent.putExtra(Intent.EXTRA_TEXT,"https://github.com/ThomasLefebvre")
                 startActivity(webViewIntent)
             }
         }
