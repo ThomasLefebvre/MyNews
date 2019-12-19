@@ -40,11 +40,13 @@ Its intuitive and user-friendly interface is very easy to use.
 <p align="center">
 </p>
 
-### Developed By LEFEBVRE Thomas
 
-    Copyright 2019 TEKZ Dev
 <p align="center">
  <img src="https://github.com/ThomasLefebvre/MyNews/blob/master/images/scr_search.png" width="350" title="hover text">
   <img src="https://github.com/ThomasLefebvre/MyNews/blob/master/images/scr_picker.png" width="350" alt="accessibility text">
 </p>
 <p align="center">
+ 
+ ### Developed By LEFEBVRE Thomas
+
+    Copyright 2019 TEKZ Dev
